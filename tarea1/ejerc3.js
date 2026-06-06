@@ -1,10 +1,10 @@
 const fs = require('fs');
 function crearLogger() {
-    let nivel = 'todo';      // privado
+    let nivel = 'todo';      
     let output = 'consola';  
 
-    function enviar(msg) {   // privado, aqui decides consola o archivo
-        if(output === 'consola'){
+    function enviar(msg) {   // recibimos el mensaje 
+        if(output === 'consola'){ // si queremos que lo muestre en consola
             console.log(msg);
         }
         else {
@@ -14,21 +14,21 @@ function crearLogger() {
 
     return {
         info: (msg) => {
-            if (nivel === 'todo'){
+            if (nivel === 'todo'){ // validamos si podemos enviar el mensaje a la funcion
                 enviar(msg);
             }
         },
         warn: (msg) => {
-            if (nivel === 'todo' || nivel === 'warn'){
+            if (nivel === 'todo' || nivel === 'warn'){ // validamos si podemos enviar el mensaje a la funcion
                 enviar(msg);
             }
         },
         error: (msg) => {
-            if (nivel === 'todo' || nivel === 'warn' || nivel === 'error'){
+            if (nivel === 'todo' || nivel === 'warn' || nivel === 'error'){ // validamos si podemos enviar el mensaje a la funcion
                 enviar(msg);
             }
         },
-        configurar: (opciones) =>  {
+        configurar: (opciones) =>  { // configuramos para definir el nivel y donde queremos que nos muestre el mensaje
             if (opciones.output) 
                 output = opciones.output;
             if (opciones.nivel) 
